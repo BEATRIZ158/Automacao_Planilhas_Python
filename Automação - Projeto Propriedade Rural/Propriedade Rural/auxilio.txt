@@ -1,0 +1,126 @@
+self => É uma palavra-chave utilizada no Python para referenciar a própria instância de uma classe, é utilizado para 
+acessar os atributos e métodos de um objeto em particular. 
+É semelhante ao THIS em outras linguagens como Java por exemplo.
+
+/#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#/
+__init__ => Tem um nome específico porque é o construtor da classe, um método especial reconhecido pelo Python para
+inicializar novos objetos dessa classe. È um padrão da linguagem e faz parte do que é chamado de métodos mágicos ou métodos
+dunder (double underscores). 
+Quando você criar uma nova instância de uma classe, o Python automaticamente chama o método __init__ dessa classe. 
+É comumente usado par realizar todas as configurações necessárias no objeto, como inicializar atributos.
+
+Mudar o nome de __init__ significaria que o método não seria mais reconhecido como o construtor da classe, e não seria 
+chamado automaticamente quando objetos daquela classe são criados.
+
+Atributo privado em Python!!!
+Exemplo:
+self.__nome = nome 
+
+Devido ao uso de dois sublinhados
+
+/#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#/
+
+O zip => É uma função que recebe duas ou mais listas (ou iteráveis) e agrupa os elementos correspondentes em tuplas.
+
+/#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#/
+TRY e EXCEPT
+
+O bloco try e except é usado em Python para o manejo de exceções.
+
+try: Este bloco permite que você teste um bloco de código quanto a erros. Ou seja, você coloca dentro do try qualquer código que 
+você acha que pode gerar um erro durante a execução.
+
+except: Este bloco permite que você trate o erro. Se um erro ocorre no bloco try, o fluxo do programa é passado imediatamente para 
+o bloco except. Dentro do except, você pode especificar o tipo de erro que deseja capturar, o que permite tratar diferentes tipos 
+de erros de maneiras distintas.
+
+/#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//
+tk.Entry() é um widget (componente) da biblioteca Tkinter usado para permitir que os usuários digitem valores de texto em uma única linha
+textvariable: É uma variável especial do Tkinter (StringVar, IntVar, DoubleVar), que é usada para armazenar o valor do campo de entrada e 
+pode ser vinculada a outros widgets ou usada para recuperar seu valor atual.
+
+borderwidth=2 define a largura da borda como 2 pixels.
+relief="ridge" dá ao Label uma borda em relevo com um efeito de crista.
+
+/#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#/
+O método pack_forget() é usado para remover um widget da tela que foi posicionado usando o gerenciador de geometria pack(). 
+Quando pack_forget() é chamado em um widget, ele efetivamente desaparece da interface gráfica, mas não é destruído — ele ainda 
+pode ser reexibido mais tarde chamando pack() novamente com os parâmetros apropriados.
+
+/#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#/
+A função pack() organiza os widgets de maneira a preencher o espaço disponível na janela, empilhando-os de acordo com a 
+ordem em que são chamados.
+
+/#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#/
+
+As funções show_ são usadas para gerenciar transições entre diferentes telas ou painéis dentro de uma 
+única janela de aplicação. Este é um método eficaz para criar uma interface de usuário onde múltiplas funcionalidades ou 
+seções estão disponíveis, mas apenas uma é mostrada por vez. A chave aqui é:
+
+Ocultar a tela atual usando pack_forget() para que ela não seja mais visível e não interfira com a tela que está sendo 
+aberta.
+Mostrar a nova tela desejada usando pack(fill="both", expand=True) para assegurar que ela utilize o espaço disponível 
+de forma eficiente, tornando a interface limpa e fácil de usar.
+
+/#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#/
+A função 'super()' é usada para chamar métodos de uma classe-pai (ou superclasse) a partir de uma classe-filha (ou subclasse).
+Quando você vê 'super().__unit__()' dentro de um método '__init__' de uma subclasse, isso está fazendo a chamada ao método'__init__'
+da classe-pai. É fundamental quando você está estendendo ou modificando o comportamento de uma classe que herda de outra.
+
+/#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#/
+'create_widgets()' é um método para criar e configurar widgets (componentes da interface), encapsula essa lógica essa lógica
+em um bloco distinto.
+
+/#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#/
+self.calendario_toplevel = tk.Toplevel(self)
+
+Criar uma nova janela filha da janela principal da aplicação Tkinter. A instância 'self.calendario_toplevel' se refere a essa nova janela.
+Uma janela filha, também conhecida como janela secundária ou janela modal, é uma janela que é criada a partir de outra janela, chamada de 
+janela pai (ou janela principal).
+Uma janela filha é dependente da janela principal de várias maneiras. Aqui estão algumas características e implicações de uma janela filha:
+
+Hierarquia:
+A janela filha (self.calendario_toplevel no seu caso) é associada a uma janela principal, que é a instância principal do aplicativo (self).
+
+Comportamento Modal:
+Quando uma janela filha é modal, como no exemplo com grab_set(), ela captura o foco do teclado e do mouse, impedindo que o usuário 
+interaja com a janela principal até que a janela modal seja fechada.
+
+Fechamento:
+Normalmente, fechar a janela principal também fecha todas as janelas filhas. Entretanto, fechar uma janela filha não fecha a janela principal.
+
+Propriedades Visuias:
+A janela filha pode ter sua própria barra de título, ícones, bordas e outras propriedades visuais independentes da janela principal.
+
+Posicionamento:
+A janela filha geralmente aparece em cima da janela principal e pode ser posicionada relativamente à janela principal.
+
+self.calendario_toplevel.title("Selecionar Data")
+
+Define o título da nova janela para "Selecionar Data". Este título aparece na barra fe título da janela.
+
+4. Tornar a Janela Modal
+
+self.calendario_toplevel.grab_set()
+
+Chama o método grab_set para tornar a nova janela modal, o que significa que o foco da aplicação estará nesta janela até que ela seja fechada.
+
+5. Adicionar o Calendário na Nova Janela
+
+self.calendario = Calendar(self.calendario_toplevel, selectmode='day', date_pattern='dd/mm/yyyy', font=("Arial", 10), width=12, height=8)
+
+Cria um widget Calendar e o adiciona à nova janela (self.calendario_toplevel). As opções configuram o modo de seleção (selectmode='day'), 
+o formato da data (date_pattern='dd/mm/yyyy'), a fonte do texto (font=("Arial", 10)) e o tamanho do calendário (width=12, height=8).
+
+6. Posiciona o Calendário na Janela: self.calendario.pack(padx=10, pady=10)
+
+Usa o método pack para gerenciar o layout do widget Calendar dentro da janela self.calendario_toplevel, com padx=10 e pady=10 adicionando 
+um preenchimento horizontal e vertical ao redor do widget.
+
+7. Adicionar um Botão de Confirmação na Nova Janela
+
+tk.Button(self.calendario_toplevel, text="Confirmar", command=self.confirmar_data).pack(pady=5)
+
+Cria um botão com o texto "Confirmar". Quando clicado, ele chama o método self.confirmar_data. O método pack é usado novamente para 
+gerenciar o layout do botão, adicionando um preenchimento vertical (pady=5).
+

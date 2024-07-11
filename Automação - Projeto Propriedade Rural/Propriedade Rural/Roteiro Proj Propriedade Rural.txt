@@ -1,0 +1,26 @@
+Roteiro das etapas
+
+Etapa 1: Main Application
+
+- Função __init__(self): Função de construção, é o construtor da classe, é um método
+reconhecido pelo Python para inicializar novos objetos da classe. Responsável por 
+inicializar a  tela principal, antes de inserir qualque Widgte nela.
+
+- def create.widgtes(self): Função que cria um Frame chamado menu, que é a janela principal,
+em seguida ajusta essa tela usando pack. 
+
+Depois, cria a caixa de texto. E em seguida os botões que estão no MENU, dando a cada
+botão um comando especifíco. 
+
+Em seguida, cria o configure de cada futura tela, que será aberta ao usuário clicar
+no botão. 
+
+- def configure_semi_confinamento(self): Cria e inicializa a tela de semi_confinamento,
+Iniciliza também as telas de adicionar animal e de procurar o animal.
+
+Em seguida, criar a caixa de texto principal dessa janela e também criar os botões das
+funções adicionar, procurar e o botão de volta ao Menu, incluindo os comandos que serão
+inicializados ao clicar em cada botão.
+
+- def configure_despesas_gerais(self):
+Criar a tela despesas gerais, e também criar a caixa label e um botão para voltar ao Menu.
