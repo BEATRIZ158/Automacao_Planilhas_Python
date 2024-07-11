@@ -9,4 +9,3 @@ class Medico(Funcionario):
         salario_base = qtdHoras * valorHora
         bonus = salario_base * 0.25
         return salario_base + bonus
-    
