@@ -3,7 +3,7 @@ from tkinter import Frame, Label, Button, PhotoImage, messagebox
 from PIL import Image, ImageTk
 from tkcalendar import Calendar
 from animal import Animal  # Importando a classe Animal
-from excel_manager import salvar_em_excel
+from dados_excel import salvar_em_excel
 
 class MainApplication(tk.Tk):
     
@@ -146,14 +146,16 @@ class MainApplication(tk.Tk):
         numero_piquet = self.entry_numero_piquet.get()
         preco_racao = float(self.entry_preco_racao.get())
         preco_silo = float(self.entry_preco_silo.get())
+        racao = float(Animal.calcular_racao(peso))
+        silo = float(Animal.calcular_silo(peso))
 
         # Validar os dados (você pode adicionar mais validações conforme necessário)
-        if not numero_brinco or not peso or not data_entrada or not numero_piquet or not preco_racao or not preco_silo:
+        if not numero_brinco or not peso or not data_entrada or not numero_piquet or not preco_racao or not preco_silo or not racao or not silo:
             tk.messagebox.showerror("Erro", "Todos os campos são obrigatórios")
             return
         
         # Criar uma instância de Animal
-        animal = Animal(numero_brinco, peso, data_entrada, numero_piquet, preco_racao, preco_silo)
+        animal = Animal(numero_brinco, peso, data_entrada, numero_piquet, preco_racao, preco_silo, racao, silo)
         
         # Salvar a instância no Excel
         salvar_em_excel(animal)

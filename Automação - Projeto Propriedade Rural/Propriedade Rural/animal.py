@@ -1,5 +1,5 @@
 class Animal:
-    def __init__(self, numero_brinco, peso, data_entrada, numero_piquet, preco_racao, preco_silo):
+    def __init__(self, numero_brinco, peso, data_entrada, numero_piquet, preco_racao, preco_silo, racao, silo):
         if peso < 0:
             raise ValueError("O peso não pode ser negativo.")
         self.numero_brinco = numero_brinco
@@ -9,6 +9,8 @@ class Animal:
         self.numero_piquet = numero_piquet
         self.preco_racao = preco_racao
         self.preco_silo = preco_silo
+        self.racao = racao
+        self.silo = silo
 
     @staticmethod
     def calcular_racao(self, peso):
