@@ -139,13 +139,44 @@ class MainApplication(tk.Tk):
         self.resizable(False, False)
         
     def salvar_animal(self):
-        # Obter valores dos campos de entrada
-        numero_brinco = self.entry_brinco.get()
-        peso = float(self.entry_peso_animal.get())
-        data_entrada = self.data_selecionada_label.cget("text")
-        numero_piquet = self.entry_numero_piquet.get()
-        preco_racao = float(self.entry_preco_racao.get())
-        preco_silo = float(self.entry_preco_silo.get())
+         # Obter valores dos campos de entrada
+        numero_brinco = self.entry_brinco.get().strip()
+        peso_str = self.entry_peso_animal.get().strip()
+        data_entrada = self.data_selecionada_label.cget("text").strip()
+        numero_piquet = self.entry_numero_piquet.get().strip()
+        preco_racao_str = self.entry_preco_racao.get().strip()
+        preco_silo_str = self.entry_preco_silo.get().strip()
+        
+        try:
+            numero_brinco = int(numero_brinco)
+        except ValueError:
+            tk.messagebox.showerror("Erro", "O número do brinco deve ser um número inteiro")
+            return
+
+        try:
+            peso = float(peso_str)
+        except ValueError:
+            tk.messagebox.showerror("Erro", "O peso deve ser um número válido")
+            return
+
+        try:
+            numero_piquet = int(numero_piquet)
+        except ValueError:
+            tk.messagebox.showerror("Erro", "O N.º do piquete deve ser um número válido")
+            return
+
+        try:
+            preco_racao = float(preco_racao_str)
+        except ValueError:
+            tk.messagebox.showerror("Erro", "O preço da ração deve ser um número válido")
+            return
+
+        try:
+            preco_silo = float(preco_silo_str)
+        except ValueError:
+            tk.messagebox.showerror("Erro", "O preço do silo deve ser um número válido")
+            return
+        
         racao = float(Animal.calcular_racao(peso))
         silo = float(Animal.calcular_silo(peso))
 
