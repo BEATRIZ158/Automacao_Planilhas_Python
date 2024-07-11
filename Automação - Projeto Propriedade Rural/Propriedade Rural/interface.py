@@ -150,8 +150,8 @@ class MainApplication(tk.Tk):
         silo = float(Animal.calcular_silo(peso))
 
         # Validar os dados (você pode adicionar mais validações conforme necessário)
-        if not numero_brinco or not peso or not data_entrada or not numero_piquet or not preco_racao or not preco_silo or not racao or not silo:
-            tk.messagebox.showerror("Erro", "Todos os campos são obrigatórios")
+        if not numero_brinco or peso <= 0 or not data_entrada or not numero_piquet or preco_racao <= 0 or preco_silo <= 0 or racao <= 0 or silo <= 0:
+            tk.messagebox.showerror("Erro", "Todos os campos são obrigatórios e devem conter valores válidos")
             return
         
         # Criar uma instância de Animal
@@ -168,8 +168,7 @@ class MainApplication(tk.Tk):
         self.entry_preco_racao.delete(0, tk.END)
         self.entry_preco_silo.delete(0, tk.END)
                 
-        tk.messagebox.showinfo("Sucesso", "Animal adicionado com sucesso!")
-        
+        tk.messagebox.showinfo("Sucesso", "Animal adicionado com sucesso!")    
     def abrir_calendario(self):
         # Cria uma nova janela
         self.calendario_toplevel = tk.Toplevel(self)
