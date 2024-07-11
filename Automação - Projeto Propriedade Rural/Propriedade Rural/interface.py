@@ -180,7 +180,7 @@ class MainApplication(tk.Tk):
         racao = float(Animal.calcular_racao(peso))
         silo = float(Animal.calcular_silo(peso))
 
-        # Validar os dados (você pode adicionar mais validações conforme necessário)
+        # Validar os dados, se os campos estão preenchidos
         if not numero_brinco or peso <= 0 or not data_entrada or not numero_piquet or preco_racao <= 0 or preco_silo <= 0 or racao <= 0 or silo <= 0:
             tk.messagebox.showerror("Erro", "Todos os campos são obrigatórios e devem conter valores válidos")
             return
