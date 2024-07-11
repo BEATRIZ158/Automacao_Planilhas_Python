@@ -32,7 +32,7 @@ class MainApplication(tk.Tk):
         
         # Caminho para a pasta de imagens
         global caminho_imagens
-        caminho_imagens = "imagens/"
+        caminho_imagens = "Automação - Projeto Propriedade Rural/Propriedade Rural/imagens/"
         
         # Carregar imagens
         self.img_semi_confinamento = ImageTk.PhotoImage(Image.open(caminho_imagens + "confinamento.png"))
