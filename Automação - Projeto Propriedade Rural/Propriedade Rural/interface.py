@@ -46,7 +46,7 @@ class MainApplication(tk.Tk):
         tk.Button(self.main_menu, text="CONTROLE \nDE FROTA", height=120, width=150, bd=5, bg=cor_verde, fg=cor_preta, font=("Arial", 14, "bold"), relief="raised", command=lambda: self.acessar_tela(self.tela_controle_frota, self.main_menu), image=self.img_controle_frota, compound='top').place(x=490, y=180)
         tk.Button(self.main_menu, text="COMPRA \nE VENDA", height=120, width=150, bd=5, bg=cor_verde, fg=cor_preta, font=("Arial", 14, "bold"), relief="raised", command=lambda: self.acessar_tela(self.tela_compra_venda, self.main_menu), image=self.img_compra_venda, compound='top').place(x=690, y=180)
         tk.Button(self.main_menu, text="SAIR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=self.fechar_sistema).place(x=415, y=480)
-        tk.Label(self.main_menu, text="© Beatriz, Paranapuã 2024", anchor="center", font=("Arial", 11, "bold")).place(x=380,y=650)
+        tk.Label(self.main_menu, text="© Beatriz, Paranapuã 2024", anchor="center", bg=cor_branca, font=("Arial", 11, "bold")).place(x=380,y=650)
         
         self.configure_semi_confinamento()
         self.configure_despesas_gerais()
@@ -80,7 +80,7 @@ class MainApplication(tk.Tk):
         tk.Button(self.tela_semi_confinamento, text="ADICIONAR ANIMAL", height=120, width=150, bd=5, bg=cor_verde, fg=cor_preta, font=("Arial", 13, "bold"), relief="raised", command=lambda: self.acessar_tela(self.tela_adicionar_animal, self.tela_semi_confinamento), image=self.img_lancar_animal, compound='top').place(x=290, y=180)
         tk.Button(self.tela_semi_confinamento, text="RETIRAR ANIMAL", height=120, width=150, bd=5, bg=cor_verde, fg=cor_preta, font=("Arial", 13, "bold"), relief="raised", image=self.img_procurar_animal, compound='top').place(x=490, y=180)
         tk.Button(self.tela_semi_confinamento, text="VOLTAR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=lambda: self.retornar_ao_menu(self.tela_semi_confinamento)).place(x=415, y=480)
-        tk.Label(self.tela_semi_confinamento, text="© Beatriz, Paranapuã 2024", anchor="center", font=("Arial", 11, "bold")).place(x=380,y=650)
+        tk.Label(self.tela_semi_confinamento, text="© Beatriz, Paranapuã 2024", anchor="center", bg=cor_branca, font=("Arial", 11, "bold")).place(x=380,y=650)
         
         self.configure_adicionar_animal()
         
@@ -92,50 +92,63 @@ class MainApplication(tk.Tk):
     def configure_adicionar_animal(self):
         self.tela_adicionar_animal = Frame(self, bg=cor_branca, relief="solid", bd=4, highlightbackground=cor_verde)
         
-        fonte_grande = ("Arial", 13) 
+        fonte_grande = ("Arial", 13)
         
         tk.Label(self.tela_adicionar_animal, text="ADICIONAR ANIMAL", anchor="center", height=3, width=80, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
         
         # Rótulos e caixas de entrada para número do brinco
-        tk.Label(self.tela_adicionar_animal, text="N.º BRINCO:", font=fonte_grande, bg=cor_branca).place(x=5, y=150)
+        tk.Label(self.tela_adicionar_animal, text="N.º BRINCO:", font=fonte_grande, bg=cor_branca).place(x=10, y=130)
         self.entry_brinco = tk.Entry(self.tela_adicionar_animal, font=fonte_grande)
-        self.entry_brinco.place(x=103, y=150)
-
-        # Rótulos e caixas de entrada para o peso do animal
-        tk.Label(self.tela_adicionar_animal, text="PESO (Kg):", font=fonte_grande, bg=cor_branca).place(x=310, y=150)
-        self.entry_peso_animal = tk.Entry(self.tela_adicionar_animal, font=fonte_grande)
-        self.entry_peso_animal.place(x=400, y=150)
+        self.entry_brinco.place(x=110, y=130)
 
         # Rótulos e caixas de número do piquete
-        tk.Label(self.tela_adicionar_animal, text="N.º PIQUETE:", font=fonte_grande, bg=cor_branca).place(x=1, y=200)
+        tk.Label(self.tela_adicionar_animal, text="N.º PIQUETE:", font=fonte_grande, bg=cor_branca).place(x=310, y=130)
         self.entry_numero_piquet = tk.Entry(self.tela_adicionar_animal, font=fonte_grande)
-        self.entry_numero_piquet.place(x=104, y=200)
+        self.entry_numero_piquet.place(x=420, y=130)
+
+        # Rótulos e caixas de entrada para o peso do animal
+        tk.Label(self.tela_adicionar_animal, text="PESO (Kg):", font=fonte_grande, bg=cor_branca).place(x=630, y=130)
+        self.entry_peso_animal = tk.Entry(self.tela_adicionar_animal, font=fonte_grande)
+        self.entry_peso_animal.place(x=730, y=130)
         
         #Rótulos e caixa de preço da ração por Kg
-        tk.Label(self.tela_adicionar_animal, text="RAÇÃO (R$):", font=fonte_grande, bg=cor_branca).place(x=298, y=200)
+        tk.Label(self.tela_adicionar_animal, text="KG RAÇÃO(R$):", font=fonte_grande, bg=cor_branca).place(x=10, y=230)
         self.entry_preco_racao = tk.Entry(self.tela_adicionar_animal, font=fonte_grande)
-        self.entry_preco_racao.place(x=400,y=200)
+        self.entry_preco_racao.place(x=140,y=230)
         
         #Rótulos e caixa de preço do silo por Kg
-        tk.Label(self.tela_adicionar_animal, text="SILO (R$):", font=fonte_grande, bg=cor_branca).place(x=20, y=250)
+        tk.Label(self.tela_adicionar_animal, text="KG SILO(R$):", font=fonte_grande, bg=cor_branca).place(x=340, y=230)
         self.entry_preco_silo = tk.Entry(self.tela_adicionar_animal, font=fonte_grande)
-        self.entry_preco_silo.place(x=104,y=250)
+        self.entry_preco_silo.place(x=450,y=230)
         
         # Botão para abrir o calendário
         self.btn_abrir_calendario = tk.Button(self.tela_adicionar_animal, text="Selecionar Data", command=self.abrir_calendario, font=fonte_grande)
-        self.btn_abrir_calendario.place(x=300, y=250)
+        self.btn_abrir_calendario.place(x=650, y=230)
 
         # Label para mostrar a data selecionada
         self.data_selecionada_label = tk.Label(self.tela_adicionar_animal, text="", bg=cor_branca, font=fonte_grande)
-        self.data_selecionada_label.place(x=450, y=255)
+        self.data_selecionada_label.place(x=800, y=235)
+        
+        # Rótulos e caixa de nome do medicamento
+        tk.Label(self.tela_adicionar_animal, text="MEDICAMENTO:", font=fonte_grande, bg=cor_branca).place(x=10, y=330)
+        self.entry_nome_medicamento = tk.Entry(self.tela_adicionar_animal, font=fonte_grande)
+        self.entry_nome_medicamento.place(x=140,y=330)
+        
+        # Rótulos e caixa de valor do medicamento
+        tk.Label(self.tela_adicionar_animal, text="R$ MEDICAMENTO:", font=fonte_grande, bg=cor_branca).place(x=340, y=330)
+        self.entry_valor_medicamento = tk.Entry(self.tela_adicionar_animal, font=fonte_grande)
+        self.entry_valor_medicamento.place(x=500,y=330)
         
         # Botão para abrir o calendário
         self.btn_salvar_animal = tk.Button(self.tela_adicionar_animal, text="SALVAR", height=2, width=10, bd=5, bg=cor_verde, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=self.salvar_animal)
-        self.btn_salvar_animal.place(x=170, y=480)
+        self.btn_salvar_animal.place(x=340, y=480)
         
         # Botão para voltar
         self.btn_voltar_tela_semi_confinamento = tk.Button(self.tela_adicionar_animal, text="VOLTAR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=lambda: self.acessar_tela(self.tela_semi_confinamento, self.tela_adicionar_animal))
-        self.btn_voltar_tela_semi_confinamento.place(x=415, y=480)
+        self.btn_voltar_tela_semi_confinamento.place(x=480, y=480)
+        
+        tk.Label(self.tela_adicionar_animal, text="© Beatriz, Paranapuã 2024", anchor="center", bg=cor_branca, font=("Arial", 11, "bold")).place(x=380,y=650)
+
     
         self.geometry(tamanho_padrao)
         self.resizable(False, False)
