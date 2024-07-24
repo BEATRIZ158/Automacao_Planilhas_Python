@@ -40,13 +40,13 @@ class MainApplication(tk.Tk):
         self.img_controle_frota = ImageTk.PhotoImage(Image.open(caminho_imagens + "frota.png"))
         self.img_compra_venda = ImageTk.PhotoImage(Image.open(caminho_imagens + "compra.png"))
  
-        tk.Label(self.main_menu, text=" AGRO-TECH", anchor="w" ,height=3, width=80, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
+        tk.Label(self.main_menu, text="AGRO-TECH", anchor="center" ,height=3, width=80, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
         tk.Button(self.main_menu, text="SEMI-\nCONFINAMENTO", height=120, width=150, bd=5, bg=cor_verde, fg=cor_preta, font=("Arial", 14, "bold"), relief="raised", command=lambda: self.acessar_tela(self.tela_semi_confinamento, self.main_menu), image=self.img_semi_confinamento, compound='top').place(x=90, y=180)
         tk.Button(self.main_menu, text="DESPESAS \nGERAIS", height=120, width=150, bd=5, bg=cor_verde, fg=cor_preta, font=("Arial", 14, "bold"), relief="raised",  command=lambda: self.acessar_tela(self.tela_despesas_gerais, self.main_menu), image=self.img_despesas_gerais, compound='top').place(x=290, y=180)
         tk.Button(self.main_menu, text="CONTROLE \nDE FROTA", height=120, width=150, bd=5, bg=cor_verde, fg=cor_preta, font=("Arial", 14, "bold"), relief="raised", command=lambda: self.acessar_tela(self.tela_controle_frota, self.main_menu), image=self.img_controle_frota, compound='top').place(x=490, y=180)
         tk.Button(self.main_menu, text="COMPRA \nE VENDA", height=120, width=150, bd=5, bg=cor_verde, fg=cor_preta, font=("Arial", 14, "bold"), relief="raised", command=lambda: self.acessar_tela(self.tela_compra_venda, self.main_menu), image=self.img_compra_venda, compound='top').place(x=690, y=180)
         tk.Button(self.main_menu, text="SAIR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=self.fechar_sistema).place(x=415, y=480)
-        tk.Label(self.main_menu, text="Beatriz, Paranapuã 2024", anchor="center", font=("Arial", 11, "bold")).place(x=380,y=650)
+        tk.Label(self.main_menu, text="© Beatriz, Paranapuã 2024", anchor="center", font=("Arial", 11, "bold")).place(x=380,y=650)
         
         self.configure_semi_confinamento()
         self.configure_despesas_gerais()
@@ -76,10 +76,11 @@ class MainApplication(tk.Tk):
         self.img_lancar_animal = ImageTk.PhotoImage(Image.open(caminho_imagens + "animais.png"))
         self.img_procurar_animal = ImageTk.PhotoImage(Image.open(caminho_imagens + "pesquisar.png"))
         
-        tk.Label(self.tela_semi_confinamento, text="SEMI-CONFINAMENTO", height=4, width=49, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
-        tk.Button(self.tela_semi_confinamento, text="ADICIONAR ANIMAL", height=120, width=150, bd=5, bg=cor_verde, fg=cor_preta, font=("Arial", 13, "bold"), relief="raised", command=lambda: self.acessar_tela(self.tela_adicionar_animal, self.tela_semi_confinamento), image=self.img_lancar_animal, compound='top').place(x=90, y=130)
-        tk.Button(self.tela_semi_confinamento, text="RETIRAR ANIMAL", height=120, width=150, bd=5, bg=cor_verde, fg=cor_preta, font=("Arial", 13, "bold"), relief="raised", image=self.img_procurar_animal, compound='top').place(x=330, y=130)
-        tk.Button(self.tela_semi_confinamento, text="VOLTAR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=lambda: self.retornar_ao_menu(self.tela_semi_confinamento)).place(x=240, y=480)
+        tk.Label(self.tela_semi_confinamento, text="SEMI-CONFINAMENTO", anchor="center" ,height=3, width=80, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
+        tk.Button(self.tela_semi_confinamento, text="ADICIONAR ANIMAL", height=120, width=150, bd=5, bg=cor_verde, fg=cor_preta, font=("Arial", 13, "bold"), relief="raised", command=lambda: self.acessar_tela(self.tela_adicionar_animal, self.tela_semi_confinamento), image=self.img_lancar_animal, compound='top').place(x=290, y=180)
+        tk.Button(self.tela_semi_confinamento, text="RETIRAR ANIMAL", height=120, width=150, bd=5, bg=cor_verde, fg=cor_preta, font=("Arial", 13, "bold"), relief="raised", image=self.img_procurar_animal, compound='top').place(x=490, y=180)
+        tk.Button(self.tela_semi_confinamento, text="VOLTAR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=lambda: self.retornar_ao_menu(self.tela_semi_confinamento)).place(x=415, y=480)
+        tk.Label(self.tela_semi_confinamento, text="© Beatriz, Paranapuã 2024", anchor="center", font=("Arial", 11, "bold")).place(x=380,y=650)
         
         self.configure_adicionar_animal()
         
@@ -93,7 +94,7 @@ class MainApplication(tk.Tk):
         
         fonte_grande = ("Arial", 13) 
         
-        tk.Label(self.tela_adicionar_animal, text="ADICIONAR ANIMAL", height=4, width=49, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
+        tk.Label(self.tela_adicionar_animal, text="ADICIONAR ANIMAL", anchor="center", height=3, width=80, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
         
         # Rótulos e caixas de entrada para número do brinco
         tk.Label(self.tela_adicionar_animal, text="N.º BRINCO:", font=fonte_grande, bg=cor_branca).place(x=5, y=150)
@@ -134,7 +135,7 @@ class MainApplication(tk.Tk):
         
         # Botão para voltar
         self.btn_voltar_tela_semi_confinamento = tk.Button(self.tela_adicionar_animal, text="VOLTAR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=lambda: self.acessar_tela(self.tela_semi_confinamento, self.tela_adicionar_animal))
-        self.btn_voltar_tela_semi_confinamento.place(x=310, y=480)
+        self.btn_voltar_tela_semi_confinamento.place(x=415, y=480)
     
         self.geometry(tamanho_padrao)
         self.resizable(False, False)
@@ -224,9 +225,10 @@ class MainApplication(tk.Tk):
     def configure_despesas_gerais(self):
         self.tela_despesas_gerais = Frame(self, bg=cor_branca, relief="solid", bd=4, highlightbackground=cor_verde)
         
-        tk.Label(self.tela_despesas_gerais, text="DESPESAS GERAIS", height=4, width=49, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
-        tk.Button(self.tela_despesas_gerais, text="VOLTAR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=lambda: self.retornar_ao_menu(self.tela_despesas_gerais)).place(x=240, y=480)
-        
+        tk.Label(self.tela_despesas_gerais, text="DESPESAS GERAIS", anchor="center", height=3, width=80, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
+        tk.Button(self.tela_despesas_gerais, text="VOLTAR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=lambda: self.retornar_ao_menu(self.tela_despesas_gerais)).place(x=415, y=480)
+        tk.Label(self.tela_despesas_gerais, text="© Beatriz, Paranapuã 2024", anchor="center", font=("Arial", 11, "bold")).place(x=380,y=650)
+
         self.geometry(tamanho_padrao)
         self.resizable(False, False)
     #================================================================================================================================================================
@@ -234,18 +236,20 @@ class MainApplication(tk.Tk):
     def configure_controle_frota(self):
         self.tela_controle_frota = Frame(self, bg=cor_branca, relief="solid", bd=4, highlightbackground=cor_verde)
         
-        tk.Label(self.tela_controle_frota, text="CONTROLE DE FROTA", height=4, width=49, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
-        tk.Button(self.tela_controle_frota, text="VOLTAR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=lambda: self.retornar_ao_menu(self.tela_controle_frota)).place(x=240, y=480)
-        
+        tk.Label(self.tela_controle_frota, text="CONTROLE DE FROTA", anchor="center", height=3, width=80, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
+        tk.Button(self.tela_controle_frota, text="VOLTAR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=lambda: self.retornar_ao_menu(self.tela_controle_frota)).place(x=415, y=480)
+        tk.Label(self.tela_controle_frota, text="© Beatriz, Paranapuã 2024", anchor="center", font=("Arial", 11, "bold")).place(x=380,y=650)
+
         self.geometry(tamanho_padrao)
         self.resizable(False, False)
     #================================================================================================================================================================
     # Configurando a tela de Compra_venda
     def configure_compra_venda(self):
         self.tela_compra_venda = Frame(self, bg=cor_branca, relief="solid", bd=4, highlightbackground=cor_verde)
-        tk.Label(self.tela_compra_venda, text="COMPRA E VENDA", height=4, width=49, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
-        tk.Button(self.tela_compra_venda, text="VOLTAR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=lambda: self.retornar_ao_menu(self.tela_compra_venda)).place(x=240, y=480)
-    
+        tk.Label(self.tela_compra_venda, text="COMPRA E VENDA", anchor="center", height=3, width=80, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
+        tk.Button(self.tela_compra_venda, text="VOLTAR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=lambda: self.retornar_ao_menu(self.tela_compra_venda)).place(x=415, y=480)
+        tk.Label(self.tela_compra_venda, text="© Beatriz, Paranapuã 2024", anchor="center", font=("Arial", 11, "bold")).place(x=380,y=650)
+
         self.geometry(tamanho_padrao)
         self.resizable(False, False)
 
