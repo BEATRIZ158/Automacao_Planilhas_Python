@@ -1,5 +1,5 @@
 class Animal:
-    def __init__(self, numero_brinco, peso, data_entrada, numero_piquet, preco_racao, preco_silo, racao, silo):
+    def __init__(self, numero_brinco, peso, data_entrada, numero_piquet, preco_racao, preco_silo, racao, silo, nome_medicamento, valor_medicamento):
         if peso < 0:
             raise ValueError("O peso não pode ser negativo.")
         self.numero_brinco = numero_brinco
@@ -13,6 +13,8 @@ class Animal:
         self.racao = racao
         self.silo = silo
         self.piquet = [numero_brinco]  # Inicializa a lista de piquet com o número do brinco do animal
+        self.nome_medicamento = nome_medicamento # Pega o nome do medicamento
+        self.valor_medicamento = valor_medicamento # Pega o valor do medicamento
 
     @staticmethod
     def calcular_racao(peso):
@@ -32,7 +34,7 @@ class Animal:
         self.pesagens.append(peso)
         self.datas.append(data)
         self.racao = self.calcular_racao(peso)
-        
+      
     @staticmethod
     def calcular_silo(peso):
         if peso < 0:
@@ -43,7 +45,7 @@ class Animal:
     def calcular_preco_silo(valor):
         if valor < 0:
             raise ValueError("O valor não pode ser negativo.")
-        return valor        
+        return valor      
     
     def ultima_pesagem(self):
         return self.pesagens[-1] if self.pesagens else None

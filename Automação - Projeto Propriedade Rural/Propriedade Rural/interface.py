@@ -153,14 +153,16 @@ class MainApplication(tk.Tk):
         self.geometry(tamanho_padrao)
         self.resizable(False, False)
         
-    def salvar_animal(self):
-         # Obter valores dos campos de entrada
+    def salvar_animal(self):    
+        # Obter valores dos campos de entrada
         numero_brinco = self.entry_brinco.get().strip()
         peso_str = self.entry_peso_animal.get().strip()
         data_entrada = self.data_selecionada_label.cget("text").strip()
         numero_piquet = self.entry_numero_piquet.get().strip()
         preco_racao_str = self.entry_preco_racao.get().strip()
         preco_silo_str = self.entry_preco_silo.get().strip()
+        nome_medicamento = self.entry_nome_medicamento.get().strip()
+        valor_medicamento = self.entry_valor_medicamento.get().strip()
         
         try:
             numero_brinco = int(numero_brinco)
@@ -194,14 +196,31 @@ class MainApplication(tk.Tk):
         
         racao = float(Animal.calcular_racao(peso))
         silo = float(Animal.calcular_silo(peso))
+   
+        # Validação dos campos opcionais
+        if nome_medicamento:
+            try:
+                nome_medicamento = str(nome_medicamento)
+            except TypeError:
+                tk.messagebox.showerror("Erro", "O nome do medicamento não pode ser um número.")
+                return
+        else:
+            nome_medicamento = 'NENHUM MEDICAMENTO'
 
+        if valor_medicamento:
+            try:
+                valor_medicamento = float(valor_medicamento)
+            except ValueError:
+                tk.messagebox.showerror("Erro", "O valor do medicamento deve ser numérico.")
+                return
+        
         # Validar os dados, se os campos estão preenchidos
         if not numero_brinco or peso <= 0 or not data_entrada or not numero_piquet or preco_racao <= 0 or preco_silo <= 0 or racao <= 0 or silo <= 0:
-            tk.messagebox.showerror("Erro", "Todos os campos são obrigatórios e devem conter valores válidos")
+            tk.messagebox.showerror("Erro", "Todos os campos obrigatórios devem ser prenchidos (Exceto medicamento)!")
             return
         
         # Criar uma instância de Animal
-        animal = Animal(numero_brinco, peso, data_entrada, numero_piquet, preco_racao, preco_silo, racao, silo)
+        animal = Animal(numero_brinco, peso, data_entrada, numero_piquet, preco_racao, preco_silo, racao, silo, nome_medicamento, valor_medicamento)
         
         # Salvar a instância no Excel
         salvar_em_excel(animal)
@@ -213,7 +232,9 @@ class MainApplication(tk.Tk):
         self.entry_numero_piquet.delete(0, tk.END)
         self.entry_preco_racao.delete(0, tk.END)
         self.entry_preco_silo.delete(0, tk.END)
-                
+        self.entry_nome_medicamento.delete(0, tk.END)
+        self.entry_valor_medicamento.delete(0, tk.END)
+        
         tk.messagebox.showinfo("Sucesso", "Animal adicionado com sucesso!")    
     def abrir_calendario(self):
         # Cria uma nova janela
