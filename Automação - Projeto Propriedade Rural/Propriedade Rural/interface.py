@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from tkinter import Frame, Label, Button, PhotoImage, messagebox
 from PIL import Image, ImageTk
 from tkcalendar import Calendar
@@ -139,7 +140,7 @@ class MainApplication(tk.Tk):
         self.entry_valor_medicamento = tk.Entry(self.tela_adicionar_animal, font=fonte_grande)
         self.entry_valor_medicamento.place(x=500,y=330)
         
-        # Botão para abrir o calendário
+        # Botão para salvar o animal
         self.btn_salvar_animal = tk.Button(self.tela_adicionar_animal, text="SALVAR", height=2, width=10, bd=5, bg=cor_verde, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=self.salvar_animal)
         self.btn_salvar_animal.place(x=340, y=480)
         
@@ -205,7 +206,7 @@ class MainApplication(tk.Tk):
                 tk.messagebox.showerror("Erro", "O nome do medicamento não pode ser um número.")
                 return
         else:
-            nome_medicamento = 'NENHUM MEDICAMENTO'
+            nome_medicamento = 'NENHUM'
 
         if valor_medicamento:
             try:
@@ -261,7 +262,7 @@ class MainApplication(tk.Tk):
         
         tk.Label(self.tela_despesas_gerais, text="DESPESAS GERAIS", anchor="center", height=3, width=80, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
         tk.Button(self.tela_despesas_gerais, text="VOLTAR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=lambda: self.retornar_ao_menu(self.tela_despesas_gerais)).place(x=415, y=480)
-        tk.Label(self.tela_despesas_gerais, text="© Beatriz, Paranapuã 2024", anchor="center", font=("Arial", 11, "bold")).place(x=380,y=650)
+        tk.Label(self.tela_despesas_gerais, text="© Beatriz, Paranapuã 2024", anchor="center", bg=cor_branca, font=("Arial", 11, "bold")).place(x=380,y=650)
 
         self.geometry(tamanho_padrao)
         self.resizable(False, False)
@@ -270,9 +271,62 @@ class MainApplication(tk.Tk):
     def configure_controle_frota(self):
         self.tela_controle_frota = Frame(self, bg=cor_branca, relief="solid", bd=4, highlightbackground=cor_verde)
         
-        tk.Label(self.tela_controle_frota, text="CONTROLE DE FROTA", anchor="center", height=3, width=80, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
+        tk.Label(self.tela_controle_frota, text="CONTROLE DE FROTA", anchor="center", height=3, width=80, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)        
+        
+        # Rótulos e caixas de entrada para número do brinco
+        #tk.Label(self.tela_controle_frota, text="N.º VEÍCULO:", font=fonte_grande, bg=cor_branca).place(x=10, y=130)
+        #self.entry_numero = tk.Entry(self.tela_controle_frota, font=fonte_grande)
+        #self.entry_numero.place(x=120, y=130)
+               
+        # Função que será chamada quando o valor da combobox mudar
+        def on_select(event):
+            selected_value = combobox.get()
+            print(f"Você selecionou: {selected_value}")
+
+        # Cria um rótulo
+        label = tk.Label(self.tela_controle_frota, text="VEÍCULO:", font=fonte_grande, bg=cor_branca)
+        label.place(x=10,y=130)
+
+        # Cria uma combobox
+        options = ["VERMELHO", "VERDE"]
+        combobox = ttk.Combobox(self.tela_controle_frota, values=options)
+        combobox.place(x=90,y=130)
+        combobox.bind("<<ComboboxSelected>>", on_select)
+
+        # Botão de NOVO Veículo
+        self.btn_novo_veiculo = tk.Button(self.tela_controle_frota, text="NOVO", command=self.abrir_calendario, font=fonte_grande)
+        self.btn_novo_veiculo.place(x=250, y=125)
+
+        # Rótulos e caixas do km atual
+        tk.Label(self.tela_controle_frota, text="KM ATUAL:", font=fonte_grande, bg=cor_branca).place(x=330, y=130)
+        self.entry_km_atual = tk.Entry(self.tela_controle_frota, font=fonte_grande)
+        self.entry_km_atual.place(x=430, y=130)
+
+        # Botão para abrir o calendário
+        self.btn_abrir_calendario = tk.Button(self.tela_controle_frota, text="SELECIONAR DATA", command=self.abrir_calendario, font=fonte_grande)
+        self.btn_abrir_calendario.place(x=630, y=125)
+
+        # Label para mostrar a data selecionada
+        self.data_selecionada_label = tk.Label(self.tela_controle_frota, text="", bg=cor_branca, font=fonte_grande)
+        self.data_selecionada_label.place(x=800, y=135)
+        
+        # Rótulos e caixas de entrada para o peso do animal
+        #tk.Label(self.tela_controle_frota, text="PESO (Kg):", font=fonte_grande, bg=cor_branca).place(x=630, y=130)
+        #self.entry_peso_animal = tk.Entry(self.tela_controle_frota, font=fonte_grande)
+        #self.entry_peso_animal.place(x=730, y=130)
+        
+        #Rótulos e caixa de preço da ração por Kg
+        #tk.Label(self.tela_controle_frota, text="KG RAÇÃO(R$):", font=fonte_grande, bg=cor_branca).place(x=10, y=230)
+        #self.entry_preco_racao = tk.Entry(self.tela_controle_frota, font=fonte_grande)
+        #self.entry_preco_racao.place(x=140,y=230)
+        
+        #Rótulos e caixa de preço do silo por Kg
+        #tk.Label(self.tela_controle_frota, text="KG SILO(R$):", font=fonte_grande, bg=cor_branca).place(x=340, y=230)
+        #self.entry_preco_silo = tk.Entry(self.tela_controle_frota, font=fonte_grande)
+        #self.entry_preco_silo.place(x=450,y=230)
+        
         tk.Button(self.tela_controle_frota, text="VOLTAR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=lambda: self.retornar_ao_menu(self.tela_controle_frota)).place(x=415, y=480)
-        tk.Label(self.tela_controle_frota, text="© Beatriz, Paranapuã 2024", anchor="center", font=("Arial", 11, "bold")).place(x=380,y=650)
+        tk.Label(self.tela_controle_frota, text="© Beatriz, Paranapuã 2024", anchor="center", bg=cor_branca, font=("Arial", 11, "bold")).place(x=380,y=650)
 
         self.geometry(tamanho_padrao)
         self.resizable(False, False)
@@ -282,7 +336,7 @@ class MainApplication(tk.Tk):
         self.tela_compra_venda = Frame(self, bg=cor_branca, relief="solid", bd=4, highlightbackground=cor_verde)
         tk.Label(self.tela_compra_venda, text="COMPRA E VENDA", anchor="center", height=3, width=80, bd=5, background=cor_verde, fg=cor_branca, font=("Arial", 15, "bold"), relief="raised").place(x=0, y=0)
         tk.Button(self.tela_compra_venda, text="VOLTAR", height=2, width=10, bd=5, bg=cor_vermelha, fg=cor_preta, font=("Arial", 12, "bold"), relief="raised", command=lambda: self.retornar_ao_menu(self.tela_compra_venda)).place(x=415, y=480)
-        tk.Label(self.tela_compra_venda, text="© Beatriz, Paranapuã 2024", anchor="center", font=("Arial", 11, "bold")).place(x=380,y=650)
+        tk.Label(self.tela_compra_venda, text="© Beatriz, Paranapuã 2024", anchor="center", bg=cor_branca, font=("Arial", 11, "bold")).place(x=380,y=650)
 
         self.geometry(tamanho_padrao)
         self.resizable(False, False)
