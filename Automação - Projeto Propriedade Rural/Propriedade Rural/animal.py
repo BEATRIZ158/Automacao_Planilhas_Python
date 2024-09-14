@@ -1,5 +1,5 @@
 class Animal:
-    def __init__(self, numero_brinco, peso, data_entrada, numero_piquet, preco_racao, preco_silo, racao, silo, nome_medicamento, valor_medicamento):
+    def __init__(self, numero_brinco, peso, data_entrada, numero_piquete, preco_racao, preco_silo, racao, silo, nome_medicamento, valor_medicamento):
         if peso < 0:
             raise ValueError("O peso não pode ser negativo.")
         self.numero_brinco = numero_brinco
@@ -7,7 +7,7 @@ class Animal:
         self.data_entrada = data_entrada
         self.pesagens = [peso]
         self.datas = [data_entrada]  # Adiciona a data de entrada à lista de datas
-        self.numero_piquet = numero_piquet
+        self.numero_piquete = numero_piquete
         self.preco_racao = preco_racao
         self.preco_silo = preco_silo
         self.racao = racao
@@ -20,47 +20,99 @@ class Animal:
     def calcular_racao(peso):
         if peso < 0:
             raise ValueError("O peso não pode ser negativo.")
-        return peso * 0.018
+        return peso * 0.180
 
-    @staticmethod
-    def calcular_preco_racao(valor):
-        if valor < 0:
-            raise ValueError("O valor não pode ser negativo.")
-        return valor
-
-    def adicionar_pesagem(self, peso, data):
-        if peso < 0:
-            raise ValueError("O peso não pode ser negativo.")
-        self.pesagens.append(peso)
-        self.datas.append(data)
-        self.racao = self.calcular_racao(peso)
-      
     @staticmethod
     def calcular_silo(peso):
         if peso < 0:
             raise ValueError("O peso não pode ser negativo.")
-        return peso * 0.020
-   
+        return peso * 0.200
+
     @staticmethod
-    def calcular_preco_silo(valor):
-        if valor < 0:
-            raise ValueError("O valor não pode ser negativo.")
-        return valor      
-    
-    def ultima_pesagem(self):
-        return self.pesagens[-1] if self.pesagens else None
+    def _validar_numero(numero):
+        try:
+            return int(numero)
+        except ValueError:
+            raise ValueError("O número do brinco deve ser um número inteiro")
 
-    def ultima_racao(self):
-        return self.racao
+    @staticmethod
+    def _validar_peso(peso):
+        try:
+            peso_float = float(peso)
+            if peso_float <= 0:
+                raise ValueError("O peso deve ser maior que zero")
+            return peso_float
+        except ValueError:
+            raise ValueError("O peso deve ser um valor numérico válido")
 
-    def ultima_data(self):
-        return self.datas[-1] if self.datas else None
+    @staticmethod
+    def _validar_numero_piquete(numero_piquete):
+        try:
+            return int(numero_piquete)
+        except ValueError:
+            raise ValueError("O número do piquete deve ser um número inteiro")
 
-    def adicionar_animal_piquet(self, brinco):
-        self.piquet.append(brinco)
+    @staticmethod
+    def _validar_preco_racao(preco_racao):
+        try:
+            preco = float(preco_racao)
+            if preco <= 0:
+                raise ValueError("O preço da ração deve ser maior que zero")
+            return preco
+        except ValueError:
+            raise ValueError("O preço da ração deve ser numérico")
 
-    def remover_animal_piquet(self, brinco):
-        if brinco in self.piquet:
-            self.piquet.remove(brinco)
-            return "Animal retirado do piquet!"
-        return "Animal não encontrado no piquet."
+    @staticmethod
+    def _validar_preco_silo(preco_silo):
+        try:
+            preco = float(preco_silo)
+            if preco <= 0:
+                raise ValueError("O preço do silo deve ser maior que zero")
+            return preco
+        except ValueError:
+            raise ValueError("O preço do silo deve ser numérico")
+
+    @staticmethod
+    def _validar_nome_medicamento(nome_medicamento):
+        if nome_medicamento:
+            return str(nome_medicamento)
+        else:
+            return 'NENHUM'
+
+    @staticmethod
+    def _validar_valor_medicamento(valor_medicamento):
+        if valor_medicamento:
+            try:
+                return float(valor_medicamento)
+            except ValueError:
+                raise ValueError("O valor do medicamento deve ser numérico")
+        else:
+            return 0.0
+
+    @staticmethod
+    def validar_numero(numero):
+        return Animal._validar_numero(numero)
+
+    @staticmethod
+    def validar_peso(peso):
+        return Animal._validar_peso(peso)
+
+    @staticmethod
+    def validar_numero_piquete(numero_piquete):
+        return Animal._validar_numero_piquete(numero_piquete)
+
+    @staticmethod
+    def validar_preco_racao(preco_racao):
+        return Animal._validar_preco_racao(preco_racao)
+
+    @staticmethod
+    def validar_preco_silo(preco_silo):
+        return Animal._validar_preco_silo(preco_silo)
+
+    @staticmethod
+    def validar_nome_medicamento(nome_medicamento):
+        return Animal._validar_nome_medicamento(nome_medicamento)
+
+    @staticmethod
+    def validar_valor_medicamento(valor_medicamento):
+        return Animal._validar_valor_medicamento(valor_medicamento)

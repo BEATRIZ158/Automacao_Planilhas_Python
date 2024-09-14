@@ -154,89 +154,47 @@ class MainApplication(tk.Tk):
         self.geometry(tamanho_padrao)
         self.resizable(False, False)
         
-    def salvar_animal(self):    
-        # Obter valores dos campos de entrada
-        numero_brinco = self.entry_brinco.get().strip()
-        peso_str = self.entry_peso_animal.get().strip()
-        data_entrada = self.data_selecionada_label.cget("text").strip()
-        numero_piquet = self.entry_numero_piquet.get().strip()
-        preco_racao_str = self.entry_preco_racao.get().strip()
-        preco_silo_str = self.entry_preco_silo.get().strip()
-        nome_medicamento = self.entry_nome_medicamento.get().strip()
-        valor_medicamento = self.entry_valor_medicamento.get().strip()
-        
+    def salvar_animal(self):
         try:
-            numero_brinco = int(numero_brinco)
-        except ValueError:
-            tk.messagebox.showerror("Erro", "O número do brinco deve ser um número inteiro")
-            return
+            # Obter valores dos campos de entrada
+            numero_brinco = Animal.validar_numero(self.entry_brinco.get().strip())
+            peso = Animal.validar_peso(self.entry_peso_animal.get().strip())
+            data_entrada = self.data_selecionada_label.cget("text").strip()
+            numero_piquet = Animal.validar_numero_piquete(self.entry_numero_piquet.get().strip())
+            preco_racao = Animal.validar_preco_racao(self.entry_preco_racao.get().strip())
+            preco_silo = Animal.validar_preco_silo(self.entry_preco_silo.get().strip())
+            nome_medicamento = Animal.validar_nome_medicamento(self.entry_nome_medicamento.get().strip())
+            valor_medicamento = Animal.validar_valor_medicamento(self.entry_valor_medicamento.get().strip())
 
-        try:
-            peso = float(peso_str)
-        except ValueError:
-            tk.messagebox.showerror("Erro", "O peso deve ser um número válido")
-            return
+            racao = Animal.calcular_racao(peso)
+            silo = Animal.calcular_silo(peso)
 
-        try:
-            numero_piquet = int(numero_piquet)
-        except ValueError:
-            tk.messagebox.showerror("Erro", "O N.º do piquete deve ser um número válido")
-            return
-
-        try:
-            preco_racao = float(preco_racao_str)
-        except ValueError:
-            tk.messagebox.showerror("Erro", "O preço da ração deve ser um número válido")
-            return
-
-        try:
-            preco_silo = float(preco_silo_str)
-        except ValueError:
-            tk.messagebox.showerror("Erro", "O preço do silo deve ser um número válido")
-            return
-        
-        racao = float(Animal.calcular_racao(peso))
-        silo = float(Animal.calcular_silo(peso))
-   
-        # Validação dos campos opcionais
-        if nome_medicamento:
-            try:
-                nome_medicamento = str(nome_medicamento)
-            except TypeError:
-                tk.messagebox.showerror("Erro", "O nome do medicamento não pode ser um número.")
+            # Validar os dados, se os campos estão preenchidos
+            if not data_entrada:
+                tk.messagebox.showerror("Erro", "Todos os campos obrigatórios devem ser preenchidos!")
                 return
-        else:
-            nome_medicamento = 'NENHUM'
 
-        if valor_medicamento:
-            try:
-                valor_medicamento = float(valor_medicamento)
-            except ValueError:
-                tk.messagebox.showerror("Erro", "O valor do medicamento deve ser numérico.")
-                return
+            # Criar uma instância de Animal
+            animal = Animal(numero_brinco, peso, data_entrada, numero_piquet, preco_racao, preco_silo, racao, silo, nome_medicamento, valor_medicamento)
+
+            # Salvar a instância no Excel
+            salvar_em_excel(animal)
+
+            # Limpar os campos de entrada
+            self.entry_brinco.delete(0, tk.END)
+            self.entry_peso_animal.delete(0, tk.END)
+            self.data_selecionada_label.config(text="")
+            self.entry_numero_piquet.delete(0, tk.END)
+            self.entry_preco_racao.delete(0, tk.END)
+            self.entry_preco_silo.delete(0, tk.END)
+            self.entry_nome_medicamento.delete(0, tk.END)
+            self.entry_valor_medicamento.delete(0, tk.END)
+
+            tk.messagebox.showinfo("Sucesso", "Animal adicionado com sucesso!")
         
-        # Validar os dados, se os campos estão preenchidos
-        if not numero_brinco or peso <= 0 or not data_entrada or not numero_piquet or preco_racao <= 0 or preco_silo <= 0 or racao <= 0 or silo <= 0:
-            tk.messagebox.showerror("Erro", "Todos os campos obrigatórios devem ser prenchidos (Exceto medicamento)!")
-            return
-        
-        # Criar uma instância de Animal
-        animal = Animal(numero_brinco, peso, data_entrada, numero_piquet, preco_racao, preco_silo, racao, silo, nome_medicamento, valor_medicamento)
-        
-        # Salvar a instância no Excel
-        salvar_em_excel(animal)
-        
-        # Limpar os campos de entrada
-        self.entry_brinco.delete(0, tk.END)
-        self.entry_peso_animal.delete(0, tk.END)
-        self.data_selecionada_label.config(text="")
-        self.entry_numero_piquet.delete(0, tk.END)
-        self.entry_preco_racao.delete(0, tk.END)
-        self.entry_preco_silo.delete(0, tk.END)
-        self.entry_nome_medicamento.delete(0, tk.END)
-        self.entry_valor_medicamento.delete(0, tk.END)
-        
-        tk.messagebox.showinfo("Sucesso", "Animal adicionado com sucesso!")    
+        except ValueError as e:
+            tk.messagebox.showerror("Erro", str(e))
+    
     def abrir_calendario(self):
         # Cria uma nova janela
         self.calendario_toplevel = tk.Toplevel(self)
@@ -303,12 +261,12 @@ class MainApplication(tk.Tk):
         self.entry_km_atual.place(x=430, y=130)
 
         # Botão para abrir o calendário
-        self.btn_abrir_calendario = tk.Button(self.tela_controle_frota, text="SELECIONAR DATA", command=self.abrir_calendario, font=fonte_grande)
-        self.btn_abrir_calendario.place(x=630, y=125)
+        self.btn_abrir_calendario_frota = tk.Button(self.tela_controle_frota, text="SELECIONAR DATA", command=self.abrir_calendario, font=fonte_grande)
+        self.btn_abrir_calendario_frota.place(x=630, y=125)
 
         # Label para mostrar a data selecionada
-        self.data_selecionada_label = tk.Label(self.tela_controle_frota, text="", bg=cor_branca, font=fonte_grande)
-        self.data_selecionada_label.place(x=800, y=135)
+        self.data_selecionada_frota_label = tk.Label(self.tela_controle_frota, text="", bg=cor_branca, font=fonte_grande)
+        self.data_selecionada_frota_label.place(x=800, y=135)
         
         # Rótulos e caixas de entrada para o peso do animal
         #tk.Label(self.tela_controle_frota, text="PESO (Kg):", font=fonte_grande, bg=cor_branca).place(x=630, y=130)
